@@ -7,8 +7,8 @@ RUN addgroup -S redis && adduser -S -G redis redis
 RUN apk add --no-cache 'su-exec>=0.2'
 
 ENV REDIS_VERSION 4.0.6
-ENV REDIS_DOWNLOAD_URL http://download.redis.io/releases/redis-4.0.6.tar.gz
-ENV REDIS_DOWNLOAD_SHA 769b5d69ec237c3e0481a262ff5306ce30db9b5c8ceb14d1023491ca7be5f6fa
+ENV REDIS_DOWNLOAD_URL https://github.com/antirez/redis/archive/unstable.tar.gz
+ENV REDIS_DOWNLOAD_SHA 6756a4a4a10119293e531b362aafe14f4c6c9945d2b615ece917b8ae988a99e7
 
 # for redis-sentinel see: http://redis.io/topics/sentinel
 RUN set -ex; \
@@ -19,6 +19,8 @@ RUN set -ex; \
 		linux-headers \
 		make \
 		musl-dev \
+		ca-certificates \
+		openssl \
 	; \
 	\
 	wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL"; \
