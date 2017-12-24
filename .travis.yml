@@ -13,7 +13,7 @@ env:
   global:
     - TAG=unstable
 
-after_success:
+script:
   - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   - export REPO=cassinyio/redis
   - docker build -f Dockerfile -t $REPO:$TAG .
